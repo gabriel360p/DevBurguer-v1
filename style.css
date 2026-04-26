@@ -1,0 +1,365 @@
+/* Fundo: #0a0a12 (Azul quase preto)
+Texto/Card: #161625 (Azul escuro)
+Destaque 1: #00f2fe (Ciano neon)
+Destaque 2: #ff0055 (Rosa choque)
+Texto Principal: #ffffff (Branco) */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #0a0a12;
+    font-family: "Orbitron", sans-serif;
+    font-style: normal;
+}
+
+header {
+    position: sticky;
+    padding: 20px;
+    background-color: #0a0a12;
+    width: 100%;
+    border-bottom: 2px solid #00f2fe;
+
+}
+
+.div-site-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #00f2fe;
+    font-size: 30px;
+}
+
+h1 span {
+    color: #ff0055;
+
+}
+
+main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+/* OPTIONS BAR */
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+    width: 50%;
+    gap: 20px;
+    height: 135px;
+    margin-bottom: 25px;
+}
+
+.options-container input {
+    width: 60%;
+    height: 45px;
+    border-radius: 10px;
+    padding-left: 8px;
+    background-color: #161625;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+    ;
+    font-style: normal;
+}
+
+.options-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.options-container .bi.bi-search,
+.bi.bi-cart,
+.bi.bi-house {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    background-color: #ff0055;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+
+/* -- OPTIONS BAR -- */
+
+
+
+
+
+
+/* CARD */
+
+.catalogue-container {
+    padding-bottom: 25px;
+
+    display: grid;
+    /* display: none; */
+    align-items: center;
+    justify-content: center;
+
+
+    /* Mexe com os itens DENTRO da coluna */
+    justify-items: center;
+
+    row-gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+    width: 100%;
+}
+
+.card {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #161625;
+}
+
+.card-header {
+    font-weight: bold;
+    color: #ff0055;
+}
+
+.card-header span {
+    color: #00f2fe;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-body p {
+    text-align: justify;
+    font-size: 80%;
+    width: 80%;
+}
+
+figure {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+picture {
+    display: flex;
+    height: auto;
+    justify-content: center;
+}
+
+.picture-food-catalogue {
+    width: 70%;
+    height: 55%;
+    border-radius: 3%;
+}
+
+.card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.card-footer-price {
+    width: 70%;
+    text-align: center;
+    color: #00f2fe;
+}
+
+.card-footer-button {
+    width: 30%;
+    text-align: end;
+    color: #ff0055;
+}
+
+/* -- CARD -- */
+
+
+
+
+
+
+/* CART */
+
+.cart-container {
+    /* display: flex; */
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    background-color: #161625;
+    border-radius: 10px;
+    padding: 9px;
+    row-gap: 10px;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #ff0055;
+    border-radius: 10px;
+
+}
+
+.cart-item-informations {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.div-item-picture {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 150px;
+    margin-left: 10px;
+    padding: 10px 0;
+}
+
+.div-tem-name {
+    color: white;
+    margin-left: 10px;
+}
+
+.div-tem-price {
+    width: auto;
+    text-align: center;
+    color: white;
+}
+
+.div-buttons {
+    width: auto;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding-right: 5px;
+}
+
+.div-buttons .bi.bi-trash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #00f2fe;
+    cursor: pointer;
+}
+
+.div-item-picture img {
+    border-radius: 10px;
+}
+
+.cart-section {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.cart-section input {
+    border-radius: 10px;
+    background-color: #0a0a12;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+    padding-left: 5px;
+}
+
+.cart-section-buttons {
+    display: flex;
+    width: 100%;
+    margin: 0px 5px;
+    justify-content: space-between;
+}
+
+.cart-section-buttons button {
+    font-family: "Orbitron", sans-serif;
+    background-color: #ff0055;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* -- CART -- */
+
+
+
+
+
+@media screen and (max-width:700px) {
+    .catalogue-container {
+        grid-template-columns: 1fr;
+    }
+
+    .options-container {
+        flex-direction: column;
+        width: 80%;
+
+    }
+
+    .options-container input {
+        width: 90%;
+        height: 45px;
+    }
+
+    .cart-item-informations {
+        display: flex;
+        flex-direction:column;
+        padding: 10px 0px;
+    }
+    .cart-section{
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+    }
+}

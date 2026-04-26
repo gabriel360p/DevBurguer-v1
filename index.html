@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBurguer</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+
+    <header>
+        <nav>
+
+            <div class="div-site-name">
+                <h1>
+                    Dev<span>Burguer</span>
+                </h1>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <div class="options-container">
+            <input class="option-search-bar" type="text" placeholder="Qual o nome do seu hambuguer favorito?">
+
+            <div class="options-buttons">
+                <span class="bi bi-search"></span>
+                <span class="bi bi-cart"> </span>
+                <span class="bi bi-house"></span>
+
+            </div>
+
+        </div>
+
+        <div class="catalogue-container">
+            <!--
+                Modelo de itens de Catalogo
+                Desativar manualmente no CSS: display:flex -> display:none
+            -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="food-title"> <span>X</span>-Salada</h2>
+                </div>
+                <div class="card-body">
+                    <figure>
+                        <picture><img class="picture-food-catalogue" src="./assets/xsalada.jpeg" alt="x-salada">
+                        </picture>
+                    </figure>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-price">
+                        <p>Preço: R$ 30</p>
+                    </div>
+                    <div class="card-footer-button">
+                        <span class="bi bi-cart"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="food-title"> <span>X</span>-Bacon</h2>
+                </div>
+                <div class="card-body">
+                    <figure>
+                        <picture><img class="picture-food-catalogue" src="./assets/xbacon.png" alt="x-bacon">
+                        </picture>
+                    </figure>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-price">
+                        <p>Preço: R$ 34</p>
+                    </div>
+                    <div class="card-footer-button">
+                        <span class="bi bi-cart"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="food-title"> <span>X</span>-Bacon Egg</h2>
+                </div>
+                <div class="card-body">
+                    <figure>
+                        <picture><img class="picture-food-catalogue" src="./assets/xsalada.jpeg" alt="x-salada">
+                        </picture>
+                    </figure>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-price">
+                        <p>Preço: R$ 39</p>
+                    </div>
+                    <div class="card-footer-button">
+                        <span class="bi bi-cart"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="food-title"> <span>M</span>onstruoso</h2>
+                </div>
+                <div class="card-body">
+                    <figure>
+                        <picture><img class="picture-food-catalogue" src="./assets/monstruoso.png" alt="monstruoso">
+                        </picture>
+                    </figure>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-price">
+                        <p>Preço: R$ 30</p>
+                    </div>
+                    <div class="card-footer-button">
+                        <span class="bi bi-cart"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="food-title"> <span>Monstruoso</span> Vegano</h2>
+                </div>
+                <div class="card-body">
+                    <figure>
+                        <picture><img class="picture-food-catalogue" src="./assets/monstruoso-vegan.png"
+                                alt="monstruoso-vegano">
+                        </picture>
+                    </figure>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-price">
+                        <p>Preço: R$ 55</p>
+                    </div>
+                    <div class="card-footer-button">
+                        <span class="bi bi-cart"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="food-title"> <span>X</span>-Vegano</h2>
+                </div>
+                <div class="card-body">
+                    <figure>
+                        <picture><img class="picture-food-catalogue" src="./assets/xvegan.png" alt="x-vagano">
+                        </picture>
+                    </figure>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-price">
+                        <p>Preço: R$ 45</p>
+                    </div>
+                    <div class="card-footer-button">
+                        <span class="bi bi-cart"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="cart-container">
+            <!--
+                 Modelo de item de Carrinho
+                Ativar manualmente no CSS: display:none -> display:flex
+            -->
+            <div class="cart-item">
+                <div class="div-item-picture">
+                    <img src="./assets/xsalada.jpeg" alt="imagem-produto">
+                </div>
+                <div class="cart-item-informations">
+                    <div class="div-tem-name">
+                        <p>X-Salada</p>
+                    </div>
+                    <div class="div-tem-price">
+                        <p>R$45</p>
+                    </div>
+                    <div class="div-buttons">
+                        <span class="bi bi-trash"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-section">
+                <input type="number" placeholder="Desconto">
+                <div class="cart-section-buttons">
+                    <button type="button" class="btn-discount">Calcular Desconto</button>
+                    <button type="button" class="btn-buying">Finalizar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+
+    </footer>
+
+</body>
+<script src="script.js"></script>
+
+</html>
