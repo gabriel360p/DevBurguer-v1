@@ -163,6 +163,8 @@ let descontos = []
 let SumDescontosAllValues = []
 
 document.querySelector(".btn-discount").addEventListener("click", () => {
+    SumDescontosAllValues = []
+    descontos= []
 
     //calculando a porcentagem
     desconto = (desconto / 100).toFixed(2);
@@ -184,17 +186,24 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
     })
     console.log(SumDescontosAllValues)
 
-    document.querySelector(".value-with-discount").innerHTML = `Valor Total com Desconto:${SumDescontosAllValues}`
+    document.querySelector(".value-with-discount").innerHTML = `Valor Total com Desconto: ${(SumDescontosAllValues).toFixed(2)}`
 })
 
-let valueTotalComum = document.querySelector(".btn-calculate").addEventListener("click",()=>{
-    valueTotalComum = cartStorage.reduce((acc,valorAtual)=>{
-        return acc + valorAtual.price;
-    })
+let valueTotalComum=0
 
-    console.log(cartStorage)
+document.querySelector(".btn-calculate").addEventListener("click", () => {
+    valueTotalComum = 0
+    for (let index = 0; index < cartStorage.length; index++) {
+         valueTotalComum += cartStorage[index].price;   
+    }
+
     console.log(valueTotalComum)
 
-    document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto:${valueTotalComum}`
+
+    // valueTotalComum = cartStorage.reduce((acc,valorAtual)=>{
+    //     return acc + valorAtual.price;
+    // })
+
+    document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
 })
 
