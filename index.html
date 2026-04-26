@@ -30,9 +30,9 @@
             <input class="option-search-bar" type="text" placeholder="Qual o nome do seu hambuguer favorito?">
 
             <div class="options-buttons">
+                <span class="bi bi-house"></span>
                 <span class="bi bi-search"></span>
                 <span class="bi bi-cart"> </span>
-                <span class="bi bi-house"></span>
 
             </div>
 
@@ -219,27 +219,42 @@
                  Modelo de item de Carrinho
                 Ativar manualmente no CSS: display:none -> display:flex
             -->
-            <!-- <div class="cart-item">
-                <div class="div-item-picture">
-                    <img src="./assets/xsalada.jpeg" alt="imagem-produto">
+
+            <div class="cart-itens">
+
+                <!-- <div class="cart-item">
+                    <div class="div-item-picture">
+                        <img src="./assets/xsalada.jpeg" alt="imagem-produto">
+                    </div>
+                    <div class="cart-item-informations">
+                        <div class="div-tem-name">
+                            <p>X-Salada</p>
+                        </div>
+                        <div class="div-tem-price">
+                            <p>R$45</p>
+                        </div>
+                        <div class="div-buttons">
+                            <span class="bi bi-trash"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="cart-item-informations">
-                    <div class="div-tem-name">
-                        <p>X-Salada</p>
-                    </div>
-                    <div class="div-tem-price">
-                        <p>R$45</p>
-                    </div>
-                    <div class="div-buttons">
-                        <span class="bi bi-trash"></span>
-                    </div>
-                </div>
-            </div>
-             -->
+
+            </div>  -->
+
             <div class="cart-section">
-                <input type="number" placeholder="Desconto">
+                <div class="cart-counts-priecing">
+                    <p class="value-none-discount">
+                        Valor total sem Desconto: Carregando
+                    </p>
+                    <p class="value-with-discount">
+                        Valor Total com Desconto: Carregando
+                    </p>
+                </div>
+                <input type="number" placeholder="Desconto" class="discount-input">
                 <div class="cart-section-buttons">
                     <button type="button" class="btn-discount">Calcular Desconto</button>
+                    <button type="button" class="btn-deleteAll">Zerar</button>
+                    <button type="button" class="btn-calculate">Calcular Valor</button>
                     <button type="button" class="btn-buying">Finalizar</button>
                 </div>
             </div>

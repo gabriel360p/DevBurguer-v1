@@ -19,11 +19,10 @@ const catalogue = [
 ]
 
 
+let cartItem = document.querySelector(".cart-itens")
 let cartSection = document.querySelector(".cart-container")
 let catalogueSection = document.querySelector(".catalogue-container")
 let cartStorage = []
-let cart = document.querySelector(".cart-container")
-
 
 //Construindo a estrutura dos cards
 function createCard(id, name, src, price, vegan) {
@@ -88,7 +87,7 @@ catalogue.forEach(item => {
 document.querySelector(".bi.bi-house").addEventListener("click", () => {
     catalogueSection.style.display = "grid" //Mostrando o catalogo ja gerado anteriormente    
     cartSection.style.display = "none" //Escondendo a seção do meu carrinho de compras
-    cartSection.innerHTML=""
+    cartItem.innerHTML = ""
 })
 
 document.querySelector(".bi.bi-cart").addEventListener("click", () => {
@@ -96,8 +95,8 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
 
 
-    cartStorage.forEach(cartItem => {
-        cart.insertAdjacentHTML("afterbegin", createItemCart(cartItem.name, cartItem.src, cartItem.price, cartItem.id));
+    cartStorage.forEach(cartIten => {
+        cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
     });
 })
 
@@ -145,11 +144,57 @@ function createItemCart(name, src, price, id) {
                 <div class="div-tem-price">
                     <p>R$ ${price}</p>
                 </div>
-                <div class="div-buttons">
-                    <span class="bi bi-trash"></span>
-                </div>
             </div>
         </div>
     `
 }
+
+
+//Zerando Carrinho
+document.querySelector(".btn-deleteAll").addEventListener("click", () => {
+    cartStorage = []
+    cartItem.innerHTML = ""
+})
+
+// value-with-discount
+//calculando desconto
+let desconto = document.querySelector(".discount-input").value
+let descontos = []
+let SumDescontosAllValues = []
+
+document.querySelector(".btn-discount").addEventListener("click", () => {
+
+    //calculando a porcentagem
+    desconto = (desconto / 100).toFixed(2);
+
+    descontos = cartStorage.map((item) => {
+
+        //conseguindo o valor de desconto
+        let valorDesconto = (item.price * desconto).toFixed(2);
+
+        //aplicando o desconto
+        let descontoAplicado = item.price - valorDesconto
+
+        console.log(descontoAplicado)
+        return descontoAplicado;
+    })
+
+    SumDescontosAllValues = descontos.reduce((acc, valorAtual) => {
+        return acc + valorAtual;
+    })
+    console.log(SumDescontosAllValues)
+
+    document.querySelector(".value-with-discount").innerHTML = `Valor Total com Desconto:${SumDescontosAllValues}`
+})
+
+let valueTotalComum = document.querySelector(".btn-calculate").addEventListener("click",()=>{
+    valueTotalComum = cartStorage.reduce((acc,valorAtual)=>{
+        return acc + valorAtual.price;
+    })
+
+    console.log(cartStorage)
+    console.log(valueTotalComum)
+
+    document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto:${valueTotalComum}`
+})
 

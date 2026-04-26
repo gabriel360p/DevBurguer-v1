@@ -71,7 +71,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: red; */
     width: 50%;
     gap: 20px;
     height: 135px;
@@ -86,7 +85,6 @@ main {
     background-color: #161625;
     color: white;
     font-family: "Orbitron", sans-serif;
-    ;
     font-style: normal;
 }
 
@@ -236,6 +234,16 @@ picture {
     row-gap: 10px;
 }
 
+.cart-itens {
+    display: flex;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+
+}
+
 .cart-item {
     display: flex;
     flex-direction: row;
@@ -244,8 +252,10 @@ picture {
     width: 100%;
     background-color: #ff0055;
     border-radius: 10px;
+    padding: 0px 5px;
 
 }
+
 
 .cart-item-informations {
     display: flex;
@@ -303,7 +313,17 @@ picture {
     display: flex;
     width: 100%;
     height: auto;
+    flex-direction: column;
 }
+
+.cart-counts-priecing {
+    width: 100%;
+    border-top: 2px solid #00f2fe;
+    padding-top: 15px;
+    line-height: 30px;
+    color: white;
+}
+
 
 .cart-section input {
     border-radius: 10px;
@@ -311,6 +331,8 @@ picture {
     color: white;
     font-family: "Orbitron", sans-serif;
     padding-left: 5px;
+    height: 30px;
+    margin-top: 15px;
 }
 
 .cart-section-buttons {
@@ -318,6 +340,7 @@ picture {
     width: 100%;
     margin: 0px 5px;
     justify-content: space-between;
+
 }
 
 .cart-section-buttons button {
@@ -327,8 +350,11 @@ picture {
     border: none;
     border-radius: 10px;
     padding: 4px;
+    margin-top: 15px;
     cursor: pointer;
+    height: 35px;
 }
+
 
 /* -- CART -- */
 
@@ -354,12 +380,15 @@ picture {
 
     .cart-item-informations {
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         padding: 10px 0px;
     }
-    .cart-section{
+
+    .cart-section {
         display: flex;
         flex-direction: column;
         row-gap: 8px;
     }
+
+
 }
