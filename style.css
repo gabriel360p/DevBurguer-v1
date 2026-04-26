@@ -355,6 +355,10 @@ picture {
     height: 35px;
 }
 
+.cart-section label{
+    margin-top: 10px;
+    color: white;   
+}
 
 /* -- CART -- */
 
