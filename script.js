@@ -22,6 +22,7 @@ const catalogue = [
 let cartItem = document.querySelector(".cart-itens")
 let cartSection = document.querySelector(".cart-container")
 let catalogueSection = document.querySelector(".catalogue-container")
+let buyingSection = document.querySelector(".buying-container")
 let cartStorage = []
 
 let descontos = []
@@ -99,11 +100,13 @@ catalogue.forEach(item => {
 document.querySelector(".bi.bi-house").addEventListener("click", () => {
     catalogueSection.style.display = "grid" //Mostrando o catalogo ja gerado anteriormente    
     cartSection.style.display = "none" //Escondendo a seção do meu carrinho de compras
+    buyingSection.style.display="none"
     cartItem.innerHTML = ""
 })
 
 document.querySelector(".bi.bi-cart").addEventListener("click", () => {
     cartSection.style.display = "flex" //Mostrando a seção do carrinho de compras
+    buyingSection.style.display="none"
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
 
     if (cartStorage.length > 0) {
@@ -185,7 +188,7 @@ document.querySelector(".btn-deleteAll").addEventListener("click", () => {
         valueTotalComum = 0
         document.querySelector(".value-none-discount").innerHTML = ""
         document.querySelector(".value-with-discount").innerHTML = ""
-        document.querySelector(".itens-discont-list").innerHTML=""
+        document.querySelector(".itens-discont-list").innerHTML = ""
     } else {
         alert("O Carrinho está vazio!")
     }
@@ -217,7 +220,7 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
 
         SumDescontosAllValues = []
         descontos = []
-        document.querySelector(".itens-discont-list").innerHTML=""
+        document.querySelector(".itens-discont-list").innerHTML = ""
 
         //calculando a porcentagem
         desconto = (document.querySelector(".discount-input").value / 100).toFixed(2);
@@ -240,8 +243,8 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
             const itemCart = cartStorage[index].name;
             const itemDiscont = descontos[index];
 
-            document.querySelector(".itens-discont-list").insertAdjacentHTML("beforeend", priecingsBlock(itemDiscont,itemCart))
-            
+            document.querySelector(".itens-discont-list").insertAdjacentHTML("beforeend", priecingsBlock(itemDiscont, itemCart))
+
         }
 
         SumDescontosAllValues = descontos.reduce((acc, valorAtual) => {
@@ -254,3 +257,8 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
     }
 })
 
+document.querySelector(".btn-buying").addEventListener("click", () => {
+    buyingSection.style.display="flex"
+    cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
+    catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+})
