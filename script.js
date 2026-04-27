@@ -100,14 +100,14 @@ catalogue.forEach(item => {
 document.querySelector(".bi.bi-house").addEventListener("click", () => {
     catalogueSection.style.display = "grid" //Mostrando o catalogo ja gerado anteriormente    
     cartSection.style.display = "none" //Escondendo a seção do meu carrinho de compras
-    buyingSection.style.display="none"
+    buyingSection.style.display = "none"
     cartItem.innerHTML = ""
 })
 
 document.querySelector(".bi.bi-cart").addEventListener("click", () => {
     cartSection.style.display = "flex" //Mostrando a seção do carrinho de compras
-    buyingSection.style.display="none"
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+    buyingSection.style.display = "none"
 
     if (cartStorage.length > 0) {
         valueTotalComum = 0
@@ -258,7 +258,16 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
 })
 
 document.querySelector(".btn-buying").addEventListener("click", () => {
-    buyingSection.style.display="flex"
+    buyingSection.style.display = "flex"
     cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+})
+
+//filtrando pedidos
+let inputValue = document.querySelector(".option-search-bar").value;
+document.querySelector(".bi.bi-search").addEventListener("click", () => {
+    let filtro=[];
+    filtro = catalogue.filter(produto => produto.name.includes('x'));
+    console.log(filtro)
+    console.log(inputValue)
 })
