@@ -253,10 +253,15 @@ picture {
     background-color: #ff0055;
     border-radius: 10px;
     padding: 0px 5px;
-
+}
+.itens-discont-list{
+    color: white;
+    line-height: 30px;
 }
 
-
+.divisor{
+    border-bottom: 2px solid #00f2fe ;
+}
 .cart-item-informations {
     display: flex;
     flex-direction: row;
@@ -318,7 +323,7 @@ picture {
 
 .cart-counts-priecing {
     width: 100%;
-    border-top: 2px solid #00f2fe;
+    /* border-top: 2px solid #00f2fe; */
     padding-top: 15px;
     line-height: 30px;
     color: white;
