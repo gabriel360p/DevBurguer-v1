@@ -19,6 +19,7 @@ const catalogue = [
 ]
 
 
+let catalogueSectionSearch = document.querySelector(".catalogue-container.results")
 let cartItem = document.querySelector(".cart-itens")
 let cartSection = document.querySelector(".cart-container")
 let catalogueSection = document.querySelector(".catalogue-container")
@@ -27,14 +28,17 @@ let cartStorage = []
 
 let descontos = []
 let valuesView = []
-//     {
-//         name:"",
-//         priceNoDiscont:0,
-//         priceWithDiscont:0,
-//     }
-// ]
+
 let SumDescontosAllValues = []
 let valueTotalComum = 0
+
+
+
+//adicionando no carrinho!
+function addCart(id) {
+    cartStorage.push(catalogue.find(item=>item.id==id))
+}
+
 
 
 //Construindo a estrutura dos cards
@@ -63,7 +67,7 @@ function createCard(id, name, src, price, vegan) {
                     </div>
                     <div class="card-footer-button">
                         
-                        <i class="bi bi-cart" id="${name}"></i>
+                        <i data-id="${id}" onclick="addCart(${id})" class="bi bi-cart" id="${name}"></i>
                     </div>
                 </div>
 
@@ -71,9 +75,6 @@ function createCard(id, name, src, price, vegan) {
 
         `
 }
-
-
-
 
 
 
@@ -93,14 +94,12 @@ catalogue.forEach(item => {
 
 
 
-
-
-
 //Controle de mostrar Catalogo e Carrinho
 document.querySelector(".bi.bi-house").addEventListener("click", () => {
     catalogueSection.style.display = "grid" //Mostrando o catalogo ja gerado anteriormente    
     cartSection.style.display = "none" //Escondendo a seção do meu carrinho de compras
     buyingSection.style.display = "none"
+    catalogueSectionSearch.style.display = "none"
     cartItem.innerHTML = ""
 })
 
@@ -108,6 +107,7 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
     cartSection.style.display = "flex" //Mostrando a seção do carrinho de compras
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
     buyingSection.style.display = "none"
+    catalogueSectionSearch.style.display = "none"
 
     if (cartStorage.length > 0) {
         valueTotalComum = 0
@@ -130,32 +130,7 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
 
 
-//Adicionando ao carrinho
-//Infelizmente estou tendo que mapear cada um deles, não consegui fazer algo dinâmico
-document.querySelector("#X-Salada").addEventListener("click", () => {
-    cartStorage.push(catalogue[0])
-    console.log(cartStorage)
-})
-document.querySelector("#X-Bacon").addEventListener("click", () => {
-    cartStorage.push(catalogue[1])
-    console.log(cartStorage)
-})
-document.querySelector("#X-Bacon-Egg").addEventListener("click", () => {
-    cartStorage.push(catalogue[2])
-    console.log(cartStorage)
-})
-document.querySelector("#Monstruoso").addEventListener("click", () => {
-    cartStorage.push(catalogue[3])
-    console.log(cartStorage)
-})
-document.querySelector("#Big-Vegano").addEventListener("click", () => {
-    cartStorage.push(catalogue[4])
-    console.log(cartStorage)
-})
-document.querySelector("#X-Vegan").addEventListener("click", () => {
-    cartStorage.push(catalogue[5])
-    console.log(cartStorage)
-})
+
 
 
 function createItemCart(name, src, price, id) {
@@ -211,10 +186,6 @@ function priecingsBlock(priceWithDiscont, name) {
 
 
 
-
-// value-with-discount
-//calculando desconto
-
 document.querySelector(".btn-discount").addEventListener("click", () => {
     if (cartStorage.length > 0) {
 
@@ -237,7 +208,6 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
             return descontoAplicado;
         })
 
-        // descontos.reverse()
 
         for (let index = 0; index < cartStorage.length; index++) {
             const itemCart = cartStorage[index].name;
@@ -263,11 +233,24 @@ document.querySelector(".btn-buying").addEventListener("click", () => {
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
 })
 
-//filtrando pedidos
-let inputValue = document.querySelector(".option-search-bar").value;
+//filtrando itens no catálogo
 document.querySelector(".bi.bi-search").addEventListener("click", () => {
-    let filtro=[];
-    filtro = catalogue.filter(produto => produto.name.includes('x'));
-    console.log(filtro)
-    console.log(inputValue)
+    catalogueSectionSearch.style.display = "grid"
+    cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
+    catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+    buyingSection.style.display = "none"
+    cartItem.innerHTML = ""
+
+    let inputValue = document.querySelector(".option-search-bar").value.toLowerCase();
+    let filtro = [];
+
+    if (document.querySelector(".option-search-bar").value != "") {
+        filtro = catalogue.filter(values => values.name.toLowerCase().includes(inputValue))
+        catalogueSectionSearch.innerHTML = ""
+        filtro.forEach(element => {
+            catalogueSectionSearch.insertAdjacentHTML("beforeend", createCard(element.id, element.name, element.src, element.price, element.vegan))
+        });
+
+    }
+
 })
