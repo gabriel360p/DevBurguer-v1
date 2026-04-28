@@ -118,7 +118,7 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
         cartStorage.forEach(item => {
             priecingsBlock(item.name, item.price, 0);
-            console.log(item.name, item.price, 0);
+            // console.log(item.name, item.price, 0);
         });
         document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
 
@@ -130,13 +130,28 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
 
 
-//removendo itens individuais
-function removeItemCart(id) {
-    console.log(cartStorage)
+// //removendo itens individuais
+// function removeItemCart(id) {
+//     console.log(cartStorage)
+//     // console.log(id)
 
-    console.log(cartStorage.findIndex(item => item.id = id))
-    cartStorage.splice(cartStorage.findIndex(item => item.id = id, 1))
-    console.log(cartStorage);
+//     let cartStorageItemIndexId
+//     for(let index = 0; index < cartStorage.length; index++) {   
+//         const element = cartStorage[index];
+//         if(element.id==id){
+//             cartStorageItemIndex = index
+//             console.log(index,element.id)
+//         }
+//     }
+
+
+    // cartStorage.splice(cartStorageItemIndexId,1)
+    // console.log(cartStorage)
+
+    // cartItem.innerHTML = ""
+    // cartStorage.forEach(cartIten => {
+    //     cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
+    // });
 
 }
 
@@ -155,9 +170,6 @@ function createItemCart(name, src, price, id) {
                 </div>
                 <div class="div-tem-price">
                     <p>R$ ${price}</p>
-                </div>
-                <div class="div-buttons">
-                    <span onclick="removeItemCart(${id})" class="bi bi-trash"></span>
                 </div>
             </div>
         </div>

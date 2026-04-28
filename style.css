@@ -121,7 +121,7 @@ main {
 /* CARD */
 
 .catalogue-container {
-    padding-bottom: 25px;
+    /* margin-bottom: 50px; */
 
     display: grid;
     /* display: none; */
