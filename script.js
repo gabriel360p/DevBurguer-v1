@@ -118,9 +118,9 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
         cartStorage.forEach(item => {
             priecingsBlock(item.name, item.price, 0);
-            // console.log(item.name, item.price, 0);
         });
         document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
+
 
     }
     cartStorage.forEach(cartIten => {
@@ -130,28 +130,30 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
 
 
-// //removendo itens individuais
-// function removeItemCart(id) {
-//     console.log(cartStorage)
-//     // console.log(id)
+//removendo itens individuais
+function removeItemCart(id) {
+//Fiz assim pois consigo receber os eventos vindos do HTML
 
-//     let cartStorageItemIndexId
-//     for(let index = 0; index < cartStorage.length; index++) {   
-//         const element = cartStorage[index];
-//         if(element.id==id){
-//             cartStorageItemIndex = index
-//             console.log(index,element.id)
-//         }
-//     }
+    console.log(cartStorage)
+    // console.log(id)
 
+    let cartStorageItemIndexId
+    for (let index = 0; index < cartStorage.length; index++) {
+        const element = cartStorage[index];
+        if (element.id == id) {
+            cartStorageItemIndexId = index
+            console.log(index, element.id)
+            cartStorage.splice(cartStorageItemIndexId, 1)
+            valueTotalComum = valueTotalComum-element.price;
+        }
+    }
+    console.log(cartStorage)
 
-    // cartStorage.splice(cartStorageItemIndexId,1)
-    // console.log(cartStorage)
-
-    // cartItem.innerHTML = ""
-    // cartStorage.forEach(cartIten => {
-    //     cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
-    // });
+    cartItem.innerHTML = ""
+    cartStorage.forEach(cartIten => {
+        cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
+    });
+    document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
 
 }
 
@@ -170,6 +172,9 @@ function createItemCart(name, src, price, id) {
                 </div>
                 <div class="div-tem-price">
                     <p>R$ ${price}</p>
+                </div>
+                <div class="div-buttons">
+                    <span onclick="removeItemCart(${id})" class="bi bi-trash"></span>
                 </div>
             </div>
         </div>
@@ -191,10 +196,7 @@ document.querySelector(".btn-deleteAll").addEventListener("click", () => {
         document.querySelector(".value-none-discount").innerHTML = ""
         document.querySelector(".value-with-discount").innerHTML = ""
         document.querySelector(".itens-discont-list").innerHTML = ""
-    } else {
-        alert("O Carrinho está vazio!")
     }
-
 })
 
 
@@ -261,24 +263,28 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
 
 
 document.querySelector(".btn-buying").addEventListener("click", () => {
-    buyingSection.style.display = "flex"
-    cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
-    catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
-    cartItem.innerHTML = ""
-    cardBuyingContainer.innerHTML = ""
+    
+    if (cartStorage.length > 0) {
+        buyingSection.style.display = "flex"
+        cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
+        catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+        cartItem.innerHTML = ""
+        cardBuyingContainer.innerHTML = ""
 
 
-    for (let index = 0; index < cartStorage.length; index++) {
-        const element = cartStorage[index];
+        for (let index = 0; index < cartStorage.length; index++) {
+            const element = cartStorage[index];
 
-        cardBuyingContainer.insertAdjacentHTML("beforeend", priecingsBlock(cartStorage[index].price, cartStorage[index].name))
+            cardBuyingContainer.insertAdjacentHTML("beforeend", priecingsBlock(cartStorage[index].price, cartStorage[index].name))
+        }
+
+        if (SumDescontosAllValues != 0) {
+            cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço com desconto: R$${SumDescontosAllValues}</p>`)
+        }
+        cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço sem desconto: R$${valueTotalComum}</p>`)
+    }else{
+        alert("O Carrinho está vazio!") 
     }
-
-
-    if (SumDescontosAllValues != 0) {
-        cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço com desconto: R$${SumDescontosAllValues}</p>`)
-    }
-    cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço sem desconto: R$${valueTotalComum}</p>`)
 })
 
 
