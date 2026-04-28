@@ -132,7 +132,7 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
 //removendo itens individuais
 function removeItemCart(id) {
-//Fiz assim pois consigo receber os eventos vindos do HTML
+    //Fiz assim pois consigo receber os eventos vindos do HTML
 
     console.log(cartStorage)
     // console.log(id)
@@ -144,17 +144,72 @@ function removeItemCart(id) {
             cartStorageItemIndexId = index
             console.log(index, element.id)
             cartStorage.splice(cartStorageItemIndexId, 1)
-            valueTotalComum = valueTotalComum-element.price;
+            // valueTotalComum = valueTotalComum-element.price;
         }
     }
     console.log(cartStorage)
+
+    //recalculando tudo
+    SumDescontosAllValues = []
+    descontos = []
+    document.querySelector(".value-none-discount").innerHTML = ""
+    document.querySelector(".itens-discont-list").innerHTML = ""
+
+    //recalculando valor sem desconto:
+    if (cartStorage.length > 0) {
+        valueTotalComum = 0
+        for (let index = 0; index < cartStorage.length; index++) {
+            valueTotalComum += cartStorage[index].price;
+        }
+
+        cartStorage.forEach(item => {
+            priecingsBlock(item.name, item.price, 0);
+        });
+        document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
+
+
+    }
+    cartStorage.forEach(cartIten => {
+        cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
+    });
+
+    //recalculando valor com desconto:
+
+    //calculando a porcentagem
+    desconto = (document.querySelector(".discount-input").value / 100).toFixed(2);
+
+    descontos = cartStorage.map((item) => {
+
+        //conseguindo o valor de desconto
+        let valorDesconto = (item.price * desconto).toFixed(2);
+
+        //aplicando o desconto
+        let descontoAplicado = item.price - valorDesconto
+
+        // console.log(descontoAplicado)
+        return descontoAplicado;
+    })
+
+
+    for (let index = 0; index < cartStorage.length; index++) {
+        const itemCart = cartStorage[index].name;
+        const itemDiscont = descontos[index];
+
+        document.querySelector(".itens-discont-list").insertAdjacentHTML("beforeend", priecingsBlock(itemDiscont, itemCart))
+
+    }
+    console.log(descontos)
+    SumDescontosAllValues = descontos.reduce((acc, valorAtual) => {
+        return acc + valorAtual;
+    }, 0)
+
+    document.querySelector(".value-with-discount").innerHTML = `Valor Total com Desconto: ${(SumDescontosAllValues).toFixed(2)}`
+
 
     cartItem.innerHTML = ""
     cartStorage.forEach(cartIten => {
         cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
     });
-    document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
-
 }
 
 
@@ -215,6 +270,7 @@ function priecingsBlock(priceWithDiscont, name) {
 
 
 
+
 document.querySelector(".btn-discount").addEventListener("click", () => {
     if (cartStorage.length > 0) {
 
@@ -233,7 +289,7 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
             //aplicando o desconto
             let descontoAplicado = item.price - valorDesconto
 
-            console.log(descontoAplicado)
+            // console.log(descontoAplicado)
             return descontoAplicado;
         })
 
@@ -245,7 +301,7 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
             document.querySelector(".itens-discont-list").insertAdjacentHTML("beforeend", priecingsBlock(itemDiscont, itemCart))
 
         }
-
+        console.log(descontos)
         SumDescontosAllValues = descontos.reduce((acc, valorAtual) => {
             return acc + valorAtual;
         }, 0)
@@ -263,11 +319,11 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
 
 
 document.querySelector(".btn-buying").addEventListener("click", () => {
-    
+
     if (cartStorage.length > 0) {
         buyingSection.style.display = "flex"
         cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
-        catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+        catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho 
         cartItem.innerHTML = ""
         cardBuyingContainer.innerHTML = ""
 
@@ -282,8 +338,8 @@ document.querySelector(".btn-buying").addEventListener("click", () => {
             cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço com desconto: R$${SumDescontosAllValues}</p>`)
         }
         cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço sem desconto: R$${valueTotalComum}</p>`)
-    }else{
-        alert("O Carrinho está vazio!") 
+    } else {
+        alert("O Carrinho está vazio!")
     }
 })
 
