@@ -24,6 +24,7 @@ let cartItem = document.querySelector(".cart-itens")
 let cartSection = document.querySelector(".cart-container")
 let catalogueSection = document.querySelector(".catalogue-container")
 let buyingSection = document.querySelector(".buying-container")
+let cardBuyingContainer = document.querySelector(".card-buying-container")
 let cartStorage = []
 
 let descontos = []
@@ -36,7 +37,7 @@ let valueTotalComum = 0
 
 //adicionando no carrinho!
 function addCart(id) {
-    cartStorage.push(catalogue.find(item=>item.id==id))
+    cartStorage.push(catalogue.find(item => item.id == id))
 }
 
 
@@ -119,8 +120,8 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
             priecingsBlock(item.name, item.price, 0);
             console.log(item.name, item.price, 0);
         });
-
         document.querySelector(".value-none-discount").innerHTML = `Valor Total sem Desconto: ${(valueTotalComum).toFixed(2)}`
+
     }
     cartStorage.forEach(cartIten => {
         cartItem.insertAdjacentHTML("afterbegin", createItemCart(cartIten.name, cartIten.src, cartIten.price, cartIten.id));
@@ -129,6 +130,15 @@ document.querySelector(".bi.bi-cart").addEventListener("click", () => {
 
 
 
+//removendo itens individuais
+function removeItemCart(id) {
+    console.log(cartStorage)
+
+    console.log(cartStorage.findIndex(item => item.id = id))
+    cartStorage.splice(cartStorage.findIndex(item => item.id = id, 1))
+    console.log(cartStorage);
+
+}
 
 
 
@@ -146,10 +156,15 @@ function createItemCart(name, src, price, id) {
                 <div class="div-tem-price">
                     <p>R$ ${price}</p>
                 </div>
+                <div class="div-buttons">
+                    <span onclick="removeItemCart(${id})" class="bi bi-trash"></span>
+                </div>
             </div>
         </div>
     `
 }
+
+
 
 
 //Zerando Carrinho
@@ -179,7 +194,7 @@ document.querySelector(".btn-deleteAll").addEventListener("click", () => {
 function priecingsBlock(priceWithDiscont, name) {
     return `
         <p>${name}</p>
-        <p>Preço com desconto: R$ ${priceWithDiscont}</p>
+        <p>Preço do Lanche : R$ ${priceWithDiscont}</p>
         <div class="divisor"></div>
     `
 }
@@ -227,11 +242,37 @@ document.querySelector(".btn-discount").addEventListener("click", () => {
     }
 })
 
+
+
+
+
+
+
 document.querySelector(".btn-buying").addEventListener("click", () => {
     buyingSection.style.display = "flex"
     cartSection.style.display = "none" //Mostrando a seção do carrinho de compras
     catalogueSection.style.display = "none" //Escondendo o meu catalogo pra mostrar só meu carrinho
+    cartItem.innerHTML = ""
+    cardBuyingContainer.innerHTML = ""
+
+
+    for (let index = 0; index < cartStorage.length; index++) {
+        const element = cartStorage[index];
+
+        cardBuyingContainer.insertAdjacentHTML("beforeend", priecingsBlock(cartStorage[index].price, cartStorage[index].name))
+    }
+
+
+    if (SumDescontosAllValues != 0) {
+        cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço com desconto: R$${SumDescontosAllValues}</p>`)
+    }
+    cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço sem desconto: R$${valueTotalComum}</p>`)
 })
+
+
+
+
+
 
 //filtrando itens no catálogo
 document.querySelector(".bi.bi-search").addEventListener("click", () => {

@@ -254,14 +254,16 @@ picture {
     border-radius: 10px;
     padding: 0px 5px;
 }
-.itens-discont-list{
+
+.itens-discont-list {
     color: white;
     line-height: 30px;
 }
 
-.divisor{
-    border-bottom: 2px solid #00f2fe ;
+.divisor {
+    border-bottom: 2px solid #00f2fe;
 }
+
 .cart-item-informations {
     display: flex;
     flex-direction: row;
@@ -360,15 +362,38 @@ picture {
     height: 35px;
 }
 
-.cart-section label{
+.cart-section label {
     margin-top: 10px;
-    color: white;   
+    color: white;
 }
 
 /* -- CART -- */
 
+/* Tela de finalizar Compras */
 
+.buying-container {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
 
+.card-buying-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    width: 60%;
+    border-radius: 15px;
+    padding: 20px;
+    line-height: 35px;
+    background-color: #161625;
+}
+.card-buying-container p{
+    /* border-bottom: 2px solid #00f2fe; */
+}
 
 
 @media screen and (max-width:700px) {
@@ -396,6 +421,7 @@ picture {
     .cart-section {
         display: flex;
         flex-direction: column;
+        text-align: left;
         row-gap: 8px;
     }
 
