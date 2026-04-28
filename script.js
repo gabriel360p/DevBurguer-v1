@@ -176,34 +176,36 @@ function removeItemCart(id) {
     //recalculando valor com desconto:
 
     //calculando a porcentagem
-    desconto = (document.querySelector(".discount-input").value / 100).toFixed(2);
+    if (document.querySelector(".discount-input").value !=0) {
+        desconto = (document.querySelector(".discount-input").value / 100).toFixed(2);
 
-    descontos = cartStorage.map((item) => {
+        descontos = cartStorage.map((item) => {
 
-        //conseguindo o valor de desconto
-        let valorDesconto = (item.price * desconto).toFixed(2);
+            //conseguindo o valor de desconto
+            let valorDesconto = (item.price * desconto).toFixed(2);
 
-        //aplicando o desconto
-        let descontoAplicado = item.price - valorDesconto
+            //aplicando o desconto
+            let descontoAplicado = item.price - valorDesconto
 
-        // console.log(descontoAplicado)
-        return descontoAplicado;
-    })
+            // console.log(descontoAplicado)
+            return descontoAplicado;
+        })
 
 
-    for (let index = 0; index < cartStorage.length; index++) {
-        const itemCart = cartStorage[index].name;
-        const itemDiscont = descontos[index];
+        for (let index = 0; index < cartStorage.length; index++) {
+            const itemCart = cartStorage[index].name;
+            const itemDiscont = descontos[index];
 
-        document.querySelector(".itens-discont-list").insertAdjacentHTML("beforeend", priecingsBlock(itemDiscont, itemCart))
+            document.querySelector(".itens-discont-list").insertAdjacentHTML("beforeend", priecingsBlock(itemDiscont, itemCart))
 
+        }
+        console.log(descontos)
+        SumDescontosAllValues = descontos.reduce((acc, valorAtual) => {
+            return acc + valorAtual;
+        }, 0)
+
+        document.querySelector(".value-with-discount").innerHTML = `Valor Total com Desconto: ${(SumDescontosAllValues).toFixed(2)}`
     }
-    console.log(descontos)
-    SumDescontosAllValues = descontos.reduce((acc, valorAtual) => {
-        return acc + valorAtual;
-    }, 0)
-
-    document.querySelector(".value-with-discount").innerHTML = `Valor Total com Desconto: ${(SumDescontosAllValues).toFixed(2)}`
 
 
     cartItem.innerHTML = ""
@@ -327,7 +329,6 @@ document.querySelector(".btn-buying").addEventListener("click", () => {
         cartItem.innerHTML = ""
         cardBuyingContainer.innerHTML = ""
 
-
         for (let index = 0; index < cartStorage.length; index++) {
             const element = cartStorage[index];
 
@@ -338,6 +339,9 @@ document.querySelector(".btn-buying").addEventListener("click", () => {
             cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço com desconto: R$${SumDescontosAllValues}</p>`)
         }
         cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Preço sem desconto: R$${valueTotalComum}</p>`)
+        cardBuyingContainer.insertAdjacentHTML("beforeend", `<p>Pedido Confirmado!</p>`)
+        cardBuyingContainer.insertAdjacentHTML("beforeend", `<p> <span style="color:#00f2fe">Dev</span><span style="color: #ff0055">Burguer</span> agradece pela preferência! Aproveite o seu DevBurguer! </p>`)
+
     } else {
         alert("O Carrinho está vazio!")
     }
